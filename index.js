@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
-// import dotenv from "dotenv";
-// import { connectDB } from "./db.js";
+import dotenv from "dotenv";
+import { connectDB } from "./db.js";
 
 
-// dotenv.config();
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -29,7 +29,7 @@ app.get("/api/test", (req, res) => {
   res.json({ message: "Frontend can read backend!" });
 });
 */
-
+await connectDB();
 
 app.listen(PORT, error => {
   if (error) {
