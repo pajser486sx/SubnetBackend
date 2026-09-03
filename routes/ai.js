@@ -60,6 +60,7 @@ Explain:
 Use clear educational language.
 Do not unnecessarily recalculate or replace the supplied values.
 If a value such as a usable host is unavailable, explain why.
+Explain a few practical scenarios where the number of usable hosts is important when designing or choosing a subnet size.
 Keep the explanation concise but useful.
         `,
 
@@ -71,7 +72,7 @@ ${JSON.stringify(
   2
 )}
         `,
-        max_output_tokens: 700
+        max_output_tokens: 750
       });
 
     return res.json({

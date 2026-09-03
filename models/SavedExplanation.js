@@ -1,15 +1,52 @@
 import mongoose from "mongoose";
 
+const resultSchema = new mongoose.Schema(
+  {
+    subnetMask: {
+      type: String,
+      required: true
+    },
+    networkAddress: {
+      type: String,
+      required: true
+    },
+    broadcastAddress: {
+      type: String,
+      required: true
+    },
+    firstUsableHost: {
+      type: String,
+      default: ""
+    },
+    lastUsableHost: {
+      type: String,
+      default: ""
+    },
+    totalAddresses: {
+      type: Number,
+      required: true
+    },
+    usableHosts: {
+      type: Number,
+      required: true
+    }
+  },
+  {
+    _id: false
+  }
+);
 const savedExplanationSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
+      index: true
     },
     ipAddress: {
       type: String,
-      required: true
+      required: true,
+      trim: true
     },
     cidr: {
       type: Number,
@@ -18,17 +55,13 @@ const savedExplanationSchema = new mongoose.Schema(
       max: 32
     },
     results: {
-      subnetMask: String,
-      networkAddress: String,
-      broadcastAddress: String,
-      firstUsableHost: String,
-      lastUsableHost: String,
-      totalAddresses: Number,
-      usableHosts: Number
+      type: resultSchema,
+      required: true
     },
     explanation: {
       type: String,
-      required: true
+      required: true,
+      trim: true
     }
   },
   {
