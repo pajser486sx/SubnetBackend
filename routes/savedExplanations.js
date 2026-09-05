@@ -19,6 +19,18 @@ router.post("/", requireAuth, async (req, res) => {
       });
     }
 
+    const existingExplanation = await SavedExplanation.findOne({
+      user: req.user.id,
+      ipAddress,
+      cidr,
+      explanation
+    });
+
+    if (existingExplanation) {
+      return res.status(409).json({
+      message: "This explanation is already saved"
+    });
+}
     const savedExplanation = await SavedExplanation.create({
       user: req.user.id,
       ipAddress,
